@@ -12,6 +12,14 @@ class Course
     labs << lab
   end
 
+  def cohorts
+    Cohort.all.select { |cohort| cohort.courses.include?(self) }
+  end
+
+  def students
+    cohorts.map { |cohort| cohort.students }.flatten.uniq
+  end
+
   def self.all
     @@all
   end

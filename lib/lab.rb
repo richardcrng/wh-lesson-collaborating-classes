@@ -13,6 +13,10 @@ class Lab
     Course.all.select { |course| course.labs.include?(self) }
   end
 
+  def students
+    courses.map { |course| course.students }.flatten.uniq
+  end
+
   def self.all
     @@all
   end
