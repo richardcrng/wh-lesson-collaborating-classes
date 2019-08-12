@@ -9,13 +9,17 @@ class Lab
     @@all << self
   end
 
+  def completed_by_student?(student)
+    student.completed_labs.include?(self)
+  end
+
   def courses
     Course.all.select { |course| course.labs.include?(self) }
   end
 
   def student_completion
     self.students.reduce({}) do |acc, student|
-      acc[student.object_id] = student.completed_labs.include?(self)
+      acc[student.object_id] = self.completed_by_student?(student)
       acc
     end
   end
