@@ -1,4 +1,4 @@
-describe 'Specification' do
+describe 'Creating labs and courses' do
   describe 'GIVEN a title and description' do
     title = 'My new lesson'
     description = 'It is going to teach some things'
@@ -42,7 +42,9 @@ describe 'Specification' do
       end
     end
   end
+end
 
+describe 'Creating students and cohorts' do
   describe 'GIVEN first_name and last_name' do
     first_name = 'Joe'
     last_name = 'Bloggs'
