@@ -128,6 +128,12 @@ describe 'Assigning courses/labs to cohorts/students' do
           expect(lab_1.students).to include(student_2)
           expect(lab_1.students).to include(student_3)
         end
+
+        it 'AND student_1#labs includes all three students' do
+          expect(student_1.labs).to include(lab_1)
+          expect(student_1.labs).to include(lab_2)
+          expect(student_1.labs).to include(lab_3)
+        end
       end
     end
   end

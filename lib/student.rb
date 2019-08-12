@@ -9,6 +9,14 @@ class Student
     @@all << self
   end
 
+  def cohort
+    Cohort.all.find { |cohort| cohort.students.include?(self) }
+  end
+
+  def labs
+    cohort.courses.map { |course| course.labs }.flatten.uniq
+  end
+
   def name
     "#{first_name} #{last_name}"
   end
