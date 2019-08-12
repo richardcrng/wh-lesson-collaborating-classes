@@ -5,4 +5,8 @@ class Cohort
     @students = arr_of_students
   end
 
+  def add_student(student)
+    students << student
+  end
+
 end

@@ -82,7 +82,7 @@ describe 'Creating students and cohorts' do
         student_4 = Student.new('Sansa', 'Stark')
         
         it 'THEN cohort#add_student(student_4) adds student_4 to the cohort' do
-          cohort.add_students(student_4)
+          cohort.add_student(student_4)
           expect(cohort.students).to include(student_4)
           expect(cohort.students.size).to eq(4)
         end
