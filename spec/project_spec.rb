@@ -77,6 +77,16 @@ describe 'Creating students and cohorts' do
       it 'THEN cohort.students is an array of the students' do
         expect(cohort.students).to eq([student_1, student_2, student_3])
       end
+
+      describe 'AND a fourth student, student_4' do
+        student_4 = Student.new('Sansa', 'Stark')
+        
+        it 'THEN cohort#add_student(student_4) adds student_4 to the cohort' do
+          cohort.add_students(student_4)
+          expect(cohort.students).to include(student_4)
+          expect(cohort.students.size).to eq(4)
+        end
+      end
     end
   end
 end
