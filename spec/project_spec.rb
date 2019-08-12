@@ -4,14 +4,18 @@ describe 'Creating labs and courses' do
     description = 'It is going to teach some things'
 
     describe 'WHEN lab = Lab.new(title, description)' do
-      result = Lab.new(title, description)
+      lab = Lab.new(title, description)
 
       it 'THEN lab#title is equal to the passed in title' do
-        expect(result.title).to eq(title)
+        expect(lab.title).to eq(title)
       end
 
       it 'AND lab#description is equal to the passed in description' do
-        expect(result.description).to eq(description)
+        expect(lab.description).to eq(description)
+      end
+
+      it 'AND Lab.all includes lab' do
+        expect(Lab.all).to include(lab)
       end
     end
   end
@@ -30,6 +34,10 @@ describe 'Creating labs and courses' do
 
       it "AND lab_1#courses is an array containing the course" do
         expect(lab_1.courses).to include(course)
+      end
+
+      it "AND Course.all includes course" do
+        expect(Course.all).to include(course)
       end
 
       describe 'AND we create a new lab' do
@@ -63,6 +71,10 @@ describe 'Creating students and cohorts' do
       it 'AND student#name is equal to first_name last_name' do
         expect(student.name).to eq("#{first_name} #{last_name}")
       end
+
+      it 'AND Student.all includes student' do
+        expect(Student.all).to include(student)
+      end
     end
   end
 
@@ -76,6 +88,10 @@ describe 'Creating students and cohorts' do
 
       it 'THEN cohort.students is an array of the students' do
         expect(cohort.students).to eq([student_1, student_2, student_3])
+      end
+
+      it 'THEN Cohort.all includes cohort' do
+        expect(Cohort.all).to include(cohort)
       end
 
       describe 'AND a fourth student, student_4' do
