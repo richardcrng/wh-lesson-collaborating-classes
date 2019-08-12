@@ -42,4 +42,25 @@ describe 'Specification' do
       end
     end
   end
+
+  describe 'GIVEN first_name and last_name' do
+    first_name = 'Joe'
+    last_name = 'Bloggs'
+
+    describe 'WHEN student = Student.new(first_name, last_name)' do
+      student = Student.new(first_name, last_name)
+
+      it 'THEN student#first_name is equal to first_name' do
+        expect(student.first_name).to eq(first_name)
+      end
+
+      it 'AND student#last_name is equal to last_name' do
+        expect(student.last_name).to eq(last_name)
+      end
+
+      it 'AND student#name is equal to first_name last_name' do
+        expect(student.name).to eq("#{first_name} #{last_name}")
+      end
+    end
+  end
 end
