@@ -65,4 +65,18 @@ describe 'Creating students and cohorts' do
       end
     end
   end
+
+  describe 'GIVEN three students, student_1, student_2 and student_3' do
+    student_1 = Student.new('Joe', 'Bloggs')
+    student_2 = Student.new('Taylor', 'Swift')
+    student_3 = Student.new('Lionel', 'Messi')
+
+    describe 'WHEN cohort = Cohort.new([student_1, student_2, student_3])' do
+      cohort = Cohort.new([student_1, student_2, student_3])
+
+      it 'THEN cohort.students is an array of the students' do
+        expect(cohort.students).to eq([student_1, student_2, student_3])
+      end
+    end
+  end
 end
