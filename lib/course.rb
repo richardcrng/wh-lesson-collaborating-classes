@@ -16,6 +16,17 @@ class Course
     Cohort.all.select { |cohort| cohort.courses.include?(self) }
   end
 
+  def completed_by_student?(student)
+    labs.all? { |lab| lab.completed_by_student?(student) }
+  end
+
+  def student_completion
+    students.reduce({}) do |acc, student|
+      acc[student.object_id] = completed_by_student?(student)
+      acc
+    end
+  end
+
   def students
     cohorts.map { |cohort| cohort.students }.flatten.uniq
   end
