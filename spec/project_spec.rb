@@ -106,3 +106,29 @@ describe 'Creating students and cohorts' do
     end
   end
 end
+
+describe 'Assigning courses/labs to cohorts/students' do
+  describe 'GIVEN three labs and a course made from them' do
+    lab_1 = Lab.new('Learn Git', "We will learn Git")
+    lab_2 = Lab.new('Learn Ruby', "We will learn Ruby")
+    lab_3 = Lab.new('Learn JavaScript', "We will learn JavaScript")
+    course = Course.new([lab_1, lab_2, lab_3])
+
+    describe 'AND three students and a cohort made from them' do
+      student_1 = Student.new('Joe', 'Bloggs')
+      student_2 = Student.new('Taylor', 'Swift')
+      student_3 = Student.new('Lionel', 'Messi')
+      cohort = Cohort.new([student_1, student_2, student_3])
+
+      describe 'WHEN cohort#assign_course(course)' do
+        cohort.assign_course(course)
+
+        it 'THEN lab_1#students includes all three students' do
+          expect(lab_1.students).to include(student_1)
+          expect(lab_1.students).to include(student_2)
+          expect(lab_1.students).to include(student_3)
+        end
+      end
+    end
+  end
+end
