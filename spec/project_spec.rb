@@ -143,6 +143,14 @@ describe 'Assigning courses/labs to cohorts/students' do
           })
         end
 
+        it 'AND course#student_completion is a hash keyed by student object_id and values of false by default' do
+          expect(course.student_completion).to eq({
+            student_1.object_id => false,
+            student_2.object_id => false,
+            student_3.object_id => false
+          })
+        end
+
         describe 'AND student_1#complete_lab(lab_1)' do
           before(:each) do
             student_1.complete_lab(lab_1)
@@ -150,6 +158,17 @@ describe 'Assigning courses/labs to cohorts/students' do
 
           it 'THEN lab_1#student_completion[student_1.object_id] == true' do
             expect(lab_1.student_completion[student_1.object_id]).to be true
+          end
+
+          describe 'AND student_1#complete(lab_2), student_1#complete(lab_2)' do
+            before(:each) do
+              student_1.complete_lab(lab_2)
+              student_1.complete_lab(lab_3)
+            end
+
+            it 'THEN course#student_completion[student_1.object_id] == true' do
+              expect(course.student_completion[student_1.object_id]).to be true
+            end
           end
         end
       end
