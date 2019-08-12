@@ -141,13 +141,15 @@ describe 'Assigning courses/labs to cohorts/students' do
             student_2.object_id => false,
             student_3.object_id => false
           })
+        end
 
-          describe 'AND student_1#complete_lab(lab_1)' do
+        describe 'AND student_1#complete_lab(lab_1)' do
+          before(:each) do
             student_1.complete_lab(lab_1)
+          end
 
-            it 'THEN lab_1#student_completion[student_1.object_id] == true' do
-              expect(lab_1.student_completion[student_1.object_id]).to be true
-            end
+          it 'THEN lab_1#student_completion[student_1.object_id] == true' do
+            expect(lab_1.student_completion[student_1.object_id]).to be true
           end
         end
       end

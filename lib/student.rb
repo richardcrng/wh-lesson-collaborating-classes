@@ -14,6 +14,10 @@ class Student
     Cohort.all.find { |cohort| cohort.students.include?(self) }
   end
 
+  def complete_lab(lab)
+    completed_labs << lab unless completed_labs.include?(lab)
+  end
+
   def labs
     cohort.courses.map { |course| course.labs }.flatten.uniq
   end
