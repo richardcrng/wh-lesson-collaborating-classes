@@ -18,8 +18,8 @@ class Lab
   end
 
   def student_completion
-    self.students.reduce({}) do |acc, student|
-      acc[student.object_id] = self.completed_by_student?(student)
+    students.reduce({}) do |acc, student|
+      acc[student.object_id] = completed_by_student?(student)
       acc
     end
   end
