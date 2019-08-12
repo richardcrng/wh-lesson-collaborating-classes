@@ -134,6 +134,22 @@ describe 'Assigning courses/labs to cohorts/students' do
           expect(student_1.labs).to include(lab_2)
           expect(student_1.labs).to include(lab_3)
         end
+
+        it 'AND lab_1#student_completion is a hash keyed by student object_id and values of false by default' do
+          expect(lab_1.student_completion).to eq({
+            student_1.object_id => false,
+            student_2.object_id => false,
+            student_3.object_id => false
+          })
+
+          describe 'AND student_1#complete_lab(lab_1)' do
+            student_1.complete_lab(lab_1)
+
+            it 'THEN lab_1#student_completion[student_1.object_id] == true' do
+              expect(lab_1.student_completion[student_1.object_id]).to be true
+            end
+          end
+        end
       end
     end
   end
